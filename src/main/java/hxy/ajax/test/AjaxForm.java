@@ -12,15 +12,15 @@ import javax.servlet.http.HttpServletResponse;
 import com.alibaba.fastjson.JSONObject;
 
 /**
- * Servlet implementation class Test
+ * Servlet implementation class AjaxForm
  */
-public class Test extends HttpServlet {
+public class AjaxForm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Test() {
+    public AjaxForm() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,7 +30,7 @@ public class Test extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -38,13 +38,9 @@ public class Test extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
-		System.out.print("ajax的请求");
-		
-		synYxGoods(response, request);
-		
-	}
-	public void synYxGoods(HttpServletResponse response, HttpServletRequest request) throws IOException {
+		System.out.println("AjaxForm正在访问");
+//		doGet(request, response);
+
 		// String json = request.getParameter("param"); //这是通过通过get方式去url
 		// 拼接的键值对，post方式取不到值。
 		request.setCharacterEncoding("UTF-8"); // 返回页面防止出现中文乱码
@@ -61,13 +57,13 @@ public class Test extends HttpServlet {
 		reader.close();// 关闭输入流
 		
 		System.out.println(result.toString());
-		JSONObject jsonObject = JSONObject.parseObject(result.toString()); // 取一个json转换为对象
+//		JSONObject jsonObject = JSONObject.parseObject(result.toString()); // 取一个json转换为对象
 		
 		//System.out.format("version:%s\nusername:%s\n", jsonObject.get("version"), jsonObject.get("shopname"));
 		//send data to client
 		String info="callback data";
 		org.json.JSONObject user_data = new org.json.JSONObject();
-		user_data.put("key", "today");
+		user_data.put("resultCode", "200");
 		user_data.put("key2", "today4");
 		user_data.put("key3", "today2");
 		user_data.put("key4", "today3");
@@ -113,6 +109,7 @@ public class Test extends HttpServlet {
 //	List<ResultData<String>> data = yxGoodsService.synYxGoodsInfo(goodsInfo);
 //	String json_str = JSON.toJSONString(data);
 //	return write(response, json_str);
+	
 	}
 
 }
