@@ -21,7 +21,7 @@
 			data : $('#form1').serialize(),//这个是发送给服务器的数据
 			
 			success : function(result) {
-				console.log(result);//打印服务端返回的数据(调试用)
+				console.log(result);//打印服务端返回的数据(调试用),result是服务器返回的数据，一定要返回json数据，否则就是error
 				if (result.resultCode == 200) {
 					alert("SUCCESS");
 				}
